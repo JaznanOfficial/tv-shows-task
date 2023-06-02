@@ -7,8 +7,8 @@ import "./style.scss";
 const AllShows = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
-    // const [pageNum, setPageNum] = useState(1);
 
+    // Data fetching from API------------------>
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -22,13 +22,19 @@ const AllShows = () => {
 
         fetchData();
     }, []);
+    // Data fetching from API------------------>
 
     return (
         <div className="explorePage">
+            {/* Page title */}
             <div className="pageHeader">
                 <div className="pageTitle">Explore TV Shows</div>
             </div>
+
+            {/* Loading content */}
             {loading && <Spinner initial={true} />}
+            
+            {/* main content */}
             <div className="content">
                 {!loading && (
                     <>

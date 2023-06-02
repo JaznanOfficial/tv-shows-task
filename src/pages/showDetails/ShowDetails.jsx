@@ -12,11 +12,11 @@ import axios from "axios";
 const ShowDetails = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
-
     const { id } = useParams();
 
-    console.log(id);
+    // console.log(id);
 
+    // single data fetching from API ------------------->
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -30,24 +30,29 @@ const ShowDetails = () => {
 
         fetchData();
     }, []);
+    // single data fetching from API ------------------->
 
-    console.log(data);
+    // destructuring data---------------->
     const { name, image, genres, premiered, rating, summary, status } = data || {};
+
+    // keeping rich text in a variable------------->
     const htmlContent = summary;
+
+    // contert number type data to time ---------------->
 
     const toHoursAndMinutes = (totalMinutes) => {
         const hours = Math.floor(totalMinutes / 60);
         const minutes = totalMinutes % 60;
         return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
     };
+
     return (
         <div className="detailsBanner">
             {!loading ? (
                 <>
                     <React.Fragment>
-                        
-
                         <div className="content">
+                            {/* shows image */}
                             <div className="left">
                                 {image?.original ? (
                                     <Img className="posterImg" src={image?.original} />
@@ -55,6 +60,8 @@ const ShowDetails = () => {
                                     <Img className="posterImg" src={PosterFallback} />
                                 )}
                             </div>
+
+                            {/* shows content */}
                             <div className="right">
                                 <div className="title">
                                     {`${name} (${dayjs(premiered).format("YYYY")})`}
@@ -105,6 +112,7 @@ const ShowDetails = () => {
                 </>
             ) : (
                 <div className="detailsBannerSkeleton">
+                    {/* skeleton */}
                     <div className="left skeleton"></div>
                     <div className="right">
                         <div className="row skeleton"></div>
