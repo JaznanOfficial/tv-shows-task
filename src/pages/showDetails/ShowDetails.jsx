@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import dayjs from "dayjs";
+import Modal from "react-modal";
 
 import "./style.scss";
 import Img from "../../components/lazyLoadImage/Img";
@@ -13,6 +14,7 @@ const ShowDetails = () => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState(null);
     const { id } = useParams();
+    const [modalOpen, setModalOpen] = useState(false);
 
     // console.log(id);
 
@@ -44,6 +46,37 @@ const ShowDetails = () => {
         const hours = Math.floor(totalMinutes / 60);
         const minutes = totalMinutes % 60;
         return `${hours}h${minutes > 0 ? ` ${minutes}m` : ""}`;
+    };
+
+    // modal open and close------------->
+
+    const openModal = () => {
+        setModalOpen(true);
+    };
+
+    const closeModal = () => {
+        setModalOpen(false);
+    };
+
+    // Modal styles
+    const modalStyles = {
+        content: {
+            width: "50%",
+            height: "auto",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            padding: "20px",
+        },
+        overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.75)",
+            zIndex: "999",
+        },
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        window.alert("successfully submitted data");
     };
 
     return (
@@ -106,6 +139,9 @@ const ShowDetails = () => {
                                         </div>
                                     )}
                                 </div>
+                                <button className="button" onClick={openModal}>
+                                    Book a ticket
+                                </button>
                             </div>
                         </div>
                     </React.Fragment>
@@ -125,6 +161,26 @@ const ShowDetails = () => {
                     </div>
                 </div>
             )}
+            <Modal
+                isOpen={modalOpen}
+                onRequestClose={closeModal}
+                style={modalStyles}
+                ariaHideApp={false}
+                className="modal"
+            >
+                <div className="container">
+                    <div className="container-close" onClick={closeModal}>
+                        &times;
+                    </div>
+                    <img src={image?.original} alt="image" />
+                    <form className="container-text" onSubmit={handleSubmit}>
+                        <h2>{name}</h2>
+                        <p>Book the ticket to get first show and 15% off on all kind of buying.</p>
+                        <input type="email" placeholder="Email address" required />
+                        <button type="submit">Submit</button>
+                    </form>
+                </div>
+            </Modal>
         </div>
     );
 };
