@@ -61,7 +61,7 @@ const ShowDetails = () => {
     // Modal styles
     const modalStyles = {
         content: {
-            width: "50%",
+            width: "90%",
             height: "auto",
             top: "50%",
             left: "50%",

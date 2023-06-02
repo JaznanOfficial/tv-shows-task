@@ -253,26 +253,37 @@
     border-radius: 8px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     max-width: 500px;
-    width: 90%;
+    width: 100%;
+    margin: 0 auto;
     .container {
-        
-        width: 600px;
-        height: 450px;
-        position: relative;
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        place-items: center;
-        line-height: 1.5;
+        // width: 350px;
+        margin: 0 auto;
         box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
+        grid-template-columns: 1fr 1fr;
+        justify-content: center;
+        align-items: center;
+        @include md {
+            width: 600px;
+            height: 450px;
+            position: relative;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            place-items: center;
+            line-height: 1.5;
+            box-shadow: 0 20px 30px rgba(0, 0, 0, 0.185);
+        }
 
         &::after {
-            content: "";
-            position: absolute;
-            background-image: linear-gradient(to bottom right, #ff9ec4, #ffd07e);
-            width: 900px;
-            height: 900px;
-            border-radius: 50%;
-            z-index: -1;
+            
+            @include md {
+                content: "";
+                position: absolute;
+                background-image: linear-gradient(to bottom right, #ff9ec4, #ffd07e);
+                width: 900px;
+                height: 900px;
+                border-radius: 50%;
+                z-index: -1;
+            }
         }
 
         &-close {
@@ -292,10 +303,11 @@
         }
 
         img {
-            width: 250px;
+            // width: 250px;
+            margin: 0 auto;
             height: 400px;
             object-fit: cover;
-            object-position: center;
+            // object-position: center;
         }
 
         &-text {
@@ -315,6 +327,7 @@
             input,
             button {
                 width: 100%;
+                margin: 0 auto;
                 border: none;
                 padding: 14px;
                 border-radius: 3px;
@@ -350,62 +363,4 @@
             }
         }
     }
-}
-
-.modalContent {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 20px;
-}
-
-.modalContent h2 {
-    font-size: 24px;
-    text-align: center;
-}
-
-.movieDetails {
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-.posterContainer {
-    width: 150px;
-    height: 200px;
-}
-
-.posterImg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-}
-
-.movieInfo {
-    display: flex;
-    flex-direction: column;
-}
-
-.movieInfo p {
-    margin: 0;
-}
-
-.closeButton {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    background-color: transparent;
-    border: none;
-    cursor: pointer;
-}
-
-.closeButton span {
-    color: #999;
-    font-size: 24px;
-    font-weight: bold;
-}
-
-.closeButton:hover span {
-    color: #333;
 }
